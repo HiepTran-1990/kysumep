@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CardBai from '../../components/CardBai.astro';
+import { slugHoa } from '../../consts';
+
+export async function getStaticPaths() {
+  const { slugHoa } = await import('../../consts');
+  const bai = await getCollection('bai-viet');
+  const cacThe = new Map<string, { ten: string; bai: any[] }>();
+  bai.forEach((b) => {
+    b.data.the.forEach((t: string) => {
+      const key = slugHoa(t);
+      if (!cacThe.has(key)) cacThe.set(key, { ten: t, bai: [] });
+      cacThe.get(key)!.bai.push(b);
+    });
+  });
+  return [...cacThe.entries()].map(([key, v]) => ({ params: { the: key }, props: v }));
+}
+
+const { ten, bai } = Astro.props;
+---
+<Base tieu_de={'Thẻ: ' + ten} mo_ta={'Các bài viết về ' + ten + ' trên Kỹ Sư MEP.'}>
+  <div class="bao" style="padding:36px 0 60px">
+    <div class="duong-dan"><a href="/">Trang chủ</a> / Thẻ</div>
+    <h1 style="font-size:32px;margin:0 0 20px">#{ten}</h1>
+    <div class="luoi">{bai.map((b: any) => <CardBai bai={b} />)}</div>
+  </div>
+</Base>

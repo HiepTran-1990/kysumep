@@ -1,0 +1,134 @@
+---
+import { SITE } from '../consts';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const {
+  tieu_de,
+  mo_ta = SITE.moTa,
+  anh,
+  loai = 'website',
+  ngay_dang,
+  ngay_cap_nhat,
+  khongIndex = false,
+  schema,
+} = Astro.props;
+
+const tieuDeDayDu = tieu_de ? tieu_de + ' | ' + SITE.ten : SITE.ten + ' — ' + SITE.khauHieu;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const anhOG = new URL(anh ?? '/og-mac-dinh.png', Astro.site).href;
+---
+<!doctype html>
+<html lang="vi" data-theme="sang">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{tieuDeDayDu}</title>
+  <meta name="description" content={mo_ta} />
+  <link rel="canonical" href={canonical} />
+  {khongIndex && <meta name="robots" content="noindex" />}
+
+  <meta property="og:type" content={loai} />
+  <meta property="og:title" content={tieuDeDayDu} />
+  <meta property="og:description" content={mo_ta} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={anhOG} />
+  <meta property="og:locale" content="vi_VN" />
+  <meta property="og:site_name" content={SITE.ten} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="alternate" type="application/rss+xml" title={SITE.ten} href="/rss.xml" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/katex/katex.min.css" />
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+
+  {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+
+  <script is:inline>
+    (function () {
+      var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'toi' : 'sang');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    // Đổi giao diện sáng/tối
+    var nutTheme = document.getElementById('nut-theme');
+    function veTheme() {
+      var t = document.documentElement.getAttribute('data-theme');
+      if (nutTheme) nutTheme.textContent = t === 'toi' ? '☀️' : '🌙';
+    }
+    veTheme();
+    if (nutTheme) nutTheme.addEventListener('click', function () {
+      var t = document.documentElement.getAttribute('data-theme') === 'toi' ? 'sang' : 'toi';
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem('theme', t);
+      veTheme();
+    });
+
+    // Tìm kiếm
+    var oTim = document.getElementById('o-tim');
+    var daTao = false;
+    function moTim() {
+      if (!oTim) return;
+      oTim.classList.add('mo');
+      if (!daTao && window.PagefindUI) {
+        new window.PagefindUI({
+          element: '#pagefind-hop',
+          showSubResults: true,
+          showImages: false,
+          translations: {
+            placeholder: 'Tìm bài viết, file tính toán, LISP...',
+            clear_search: 'Xóa',
+            load_more: 'Xem thêm kết quả',
+            search_label: 'Tìm trong web',
+            zero_results: 'Không tìm thấy "[SEARCH_TERM]". Thử từ khóa ngắn hơn.',
+            many_results: 'Tìm thấy [COUNT] kết quả cho "[SEARCH_TERM]"',
+            one_result: 'Tìm thấy 1 kết quả cho "[SEARCH_TERM]"',
+            searching: 'Đang tìm "[SEARCH_TERM]"...',
+          },
+        });
+        daTao = true;
+      }
+      setTimeout(function () {
+        var i = document.querySelector('#pagefind-hop input');
+        if (i) i.focus();
+      }, 60);
+    }
+    function dongTim() { if (oTim) oTim.classList.remove('mo'); }
+    var nutTim = document.getElementById('nut-tim');
+    if (nutTim) nutTim.addEventListener('click', moTim);
+    if (oTim) oTim.addEventListener('click', function (e) { if (e.target === oTim) dongTim(); });
+    document.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); moTim(); }
+      if (e.key === 'Escape') dongTim();
+    });
+
+    // Nút sao chép code
+    document.querySelectorAll('.bai-noi-dung pre').forEach(function (pre) {
+      var boc = document.createElement('div');
+      boc.className = 'khoi-code';
+      pre.parentNode.insertBefore(boc, pre);
+      boc.appendChild(pre);
+      var n = document.createElement('button');
+      n.className = 'nut-chep';
+      n.textContent = 'Sao chép';
+      n.addEventListener('click', function () {
+        navigator.clipboard.writeText(pre.innerText);
+        n.textContent = '✓ Đã chép';
+        setTimeout(function () { n.textContent = 'Sao chép'; }, 1800);
+      });
+      boc.appendChild(n);
+    });
+  </script>
+</body>
+</html>

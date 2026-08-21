@@ -1,0 +1,38 @@
+---
+import { SITE, DANH_MUC } from '../consts';
+const nam = new Date().getFullYear();
+---
+<footer class="chan-trang">
+  <div class="bao">
+    <div class="chan-luoi">
+      <div>
+        <h4>{SITE.ten}</h4>
+        <p style="color:var(--chu-nhat);margin:0 0 10px;font-size:14.5px">{SITE.khauHieu}</p>
+        <p style="color:var(--chu-nhat);margin:0;font-size:14.5px">Biên soạn bởi <strong>{SITE.tacGia}</strong> — kỹ sư MEP.</p>
+      </div>
+      <div>
+        <h4>Danh mục</h4>
+        <ul>
+          {DANH_MUC.map((d) => <li><a href={'/' + d.slug + '/'}>{d.ten}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <h4>Thông tin</h4>
+        <ul>
+          <li><a href="/gioi-thieu">Giới thiệu</a></li>
+          <li><a href="/lien-he">Liên hệ</a></li>
+          <li><a href="/ban-quyen">Điều khoản & Bản quyền</a></li>
+          <li><a href="/tai-lieu">Thư viện tài liệu</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="chan-cuoi">
+      © {nam} {SITE.ten}. Nội dung chia sẻ theo giấy phép
+      <a href={SITE.giayPhepLink} rel="license noopener" target="_blank">{SITE.giayPhep}</a> —
+      được sử dụng và chia sẻ lại miễn phí, vui lòng ghi nguồn. Không dùng cho mục đích thương mại.
+      <br />
+      <span style="opacity:.8">Tài liệu kỹ thuật trên web chỉ mang tính tham khảo. Người sử dụng chịu trách nhiệm kiểm tra lại trước khi áp dụng vào công trình thật.</span>
+    </div>
+  </div>
+</footer>

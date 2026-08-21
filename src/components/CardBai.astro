@@ -1,0 +1,14 @@
+---
+import { timDanhMuc, ngayVN } from '../consts';
+const { bai } = Astro.props;
+const dm = timDanhMuc(bai.data.danh_muc);
+---
+<a class="the-bai" href={'/' + bai.id}>
+  <span class="nhan-dm">{dm ? dm.ten : bai.data.danh_muc}</span>
+  <h3>{bai.data.tieu_de}</h3>
+  <p>{bai.data.mo_ta}</p>
+  <div class="chan">
+    <span>{ngayVN(bai.data.ngay_dang)}</span>
+    {bai.data.tai_lieu.length > 0 && <span>📎 Có file tải về</span>}
+  </div>
+</a>

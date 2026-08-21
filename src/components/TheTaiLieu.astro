@@ -1,0 +1,36 @@
+---
+import { ngayVN } from '../consts';
+const { tl } = Astro.props;
+const ico: Record<string, string> = {
+  xlsx: '📊', xls: '📊', csv: '📊',
+  lsp: '📝', zip: '🗜️', rar: '🗜️',
+  dwg: '📐', rvt: '🏢', dyn: '🏢',
+  pdf: '📕', docx: '📄', doc: '📄',
+};
+const dinhDang = tl.data.dinh_dang.replace('.', '').toLowerCase();
+---
+<div class="tai-lieu">
+  <div class="tl-dau">
+    <div class="tl-ico">{ico[dinhDang] ?? '📁'}</div>
+    <div>
+      <h3>{tl.data.ten}</h3>
+      <div class="tl-meta">{tl.data.mo_ta}</div>
+    </div>
+  </div>
+
+  <div class="tl-bang">
+    <div><b>Định dạng</b>{tl.data.dinh_dang} · {tl.data.dung_luong}</div>
+    <div><b>Phiên bản</b>{tl.data.phien_ban}</div>
+    <div><b>Cập nhật</b>{ngayVN(tl.data.ngay_cap_nhat)}</div>
+    {tl.data.phan_mem_can && <div><b>Cần phần mềm</b>{tl.data.phan_mem_can}</div>}
+  </div>
+
+  {tl.data.tieu_chuan.length > 0 && (
+    <p style="font-size:14.5px;margin:0 0 14px">
+      <b>Cơ sở tính toán:</b> {tl.data.tieu_chuan.join(' · ')}
+    </p>
+  )}
+
+  <a class="nut" href={tl.data.link_tai} download>⬇️ TẢI VỀ MIỄN PHÍ</a>
+  <p class="gp">Giấy phép {tl.data.giay_phep} — vui lòng ghi nguồn khi chia sẻ lại.</p>
+</div>

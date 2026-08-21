@@ -1,0 +1,170 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import CardBai from '../components/CardBai.astro';
+import TheTaiLieu from '../components/TheTaiLieu.astro';
+import { DANH_MUC, DANH_MUC_PHANG, SITE, timDanhMuc, ngayVN, slugHoa } from '../consts';
+
+export async function getStaticPaths() {
+  const { DANH_MUC_PHANG } = await import('../consts');
+  const bai = await getCollection('bai-viet');
+
+  const trangDanhMuc = DANH_MUC_PHANG.map((d) => ({
+    params: { slug: d.slug },
+    props: { loai: 'danh-muc', danhMucSlug: d.slug },
+  }));
+
+  const trangBai = bai.map((b) => ({
+    params: { slug: b.id },
+    props: { loai: 'bai', id: b.id },
+  }));
+
+  return [...trangDanhMuc, ...trangBai];
+}
+
+const { loai } = Astro.props;
+const tatCaBai = (await getCollection('bai-viet')).sort(
+  (a, b) => b.data.ngay_dang.valueOf() - a.data.ngay_dang.valueOf()
+);
+
+let dm: any = null, baiTrongDM: any[] = [], entry: any = null, Content: any = null, headings: any[] = [], taiLieuKem: any[] = [], lienQuan: any[] = [], schema: any = null, duongDan: any[] = [];
+
+if (loai === 'danh-muc') {
+  dm = timDanhMuc(Astro.props.danhMucSlug)!;
+  baiTrongDM = tatCaBai.filter(
+    (b) => b.data.danh_muc === dm.slug || b.data.danh_muc.startsWith(dm.slug + '/')
+  );
+} else {
+  entry = (await getCollection('bai-viet')).find((b) => b.id === Astro.props.id)!;
+  const r = await render(entry);
+  Content = r.Content;
+  headings = r.headings.filter((h: any) => h.depth === 2 || h.depth === 3);
+
+  const tl = await getCollection('tai-lieu');
+  taiLieuKem = tl.filter((t) => entry.data.tai_lieu.includes(t.id));
+
+  lienQuan = tatCaBai
+    .filter((b) => b.id !== entry.id)
+    .map((b) => ({
+      b,
+      diem:
+        (b.data.danh_muc === entry.data.danh_muc ? 3 : 0) +
+        b.data.the.filter((t: string) => entry.data.the.includes(t)).length,
+    }))
+    .filter((x) => x.diem > 0)
+    .sort((a, b) => b.diem - a.diem)
+    .slice(0, 3)
+    .map((x) => x.b);
+
+  const dmBai = timDanhMuc(entry.data.danh_muc);
+  const phan = entry.data.danh_muc.split('/');
+  duongDan = phan.map((_: string, i: number) => timDanhMuc(phan.slice(0, i + 1).join('/'))).filter(Boolean);
+
+  schema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: entry.data.tieu_de,
+      description: entry.data.mo_ta,
+      datePublished: entry.data.ngay_dang.toISOString(),
+      dateModified: (entry.data.ngay_cap_nhat ?? entry.data.ngay_dang).toISOString(),
+      author: { '@type': 'Person', name: entry.data.tac_gia, url: SITE.tenMien + '/gioi-thieu' },
+      publisher: { '@type': 'Organization', name: SITE.ten, url: SITE.tenMien },
+      inLanguage: 'vi-VN',
+      mainEntityOfPage: SITE.tenMien + '/' + entry.id,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Trang chủ', item: SITE.tenMien },
+        ...duongDan.map((d: any, i: number) => ({
+          '@type': 'ListItem', position: i + 2, name: d.ten, item: SITE.tenMien + '/' + d.slug + '/',
+        })),
+        { '@type': 'ListItem', position: duongDan.length + 2, name: entry.data.tieu_de },
+      ],
+    },
+  ];
+}
+
+const tieuDe = loai === 'danh-muc' ? dm.ten : entry.data.tieu_de;
+const moTa = loai === 'danh-muc' ? dm.moTa : entry.data.mo_ta;
+---
+<Base tieu_de={tieuDe} mo_ta={moTa} loai={loai === 'bai' ? 'article' : 'website'} schema={schema}>
+  {loai === 'danh-muc' ? (
+    <div class="bao" style="padding:36px 0 60px">
+      <div class="duong-dan"><a href="/">Trang chủ</a> / {dm.ten}</div>
+      <h1 style="font-size:34px;margin:0 0 8px">{dm.icon} {dm.ten}</h1>
+      <p style="color:var(--chu-nhat);font-size:18px;max-width:660px">{dm.moTa}</p>
+
+      {dm.con && (
+        <div class="luoi" style="margin:28px 0">
+          {dm.con.map((c: any) => (
+            <a class="the-dm" href={'/' + c.slug + '/'}>
+              <div class="ico">{c.icon}</div>
+              <h3>{c.ten}</h3>
+              <p>{c.moTa}</p>
+            </a>
+          ))}
+        </div>
+      )}
+
+      <div class="muc-dau" style="margin-top:34px"><h2>{baiTrongDM.length} bài viết</h2></div>
+      {baiTrongDM.length > 0
+        ? <div class="luoi">{baiTrongDM.map((b) => <CardBai bai={b} />)}</div>
+        : <p style="color:var(--chu-nhat)">Chưa có bài viết trong mục này.</p>}
+    </div>
+  ) : (
+    <div class="bao bai-khung">
+      <article class="bai">
+        <div class="duong-dan">
+          <a href="/">Trang chủ</a>
+          {duongDan.map((d: any) => <> / <a href={'/' + d.slug + '/'}>{d.ten}</a></>)}
+        </div>
+        <h1>{entry.data.tieu_de}</h1>
+        <p class="tom-luoc">{entry.data.mo_ta}</p>
+        <div class="meta">
+          <span>✍️ {entry.data.tac_gia}</span>
+          <span>📅 {ngayVN(entry.data.ngay_dang)}</span>
+          {entry.data.ngay_cap_nhat && <span>🔄 Cập nhật {ngayVN(entry.data.ngay_cap_nhat)}</span>}
+        </div>
+
+        <div class="bai-noi-dung">
+          <Content />
+        </div>
+
+        {taiLieuKem.map((t) => <TheTaiLieu tl={t} />)}
+
+        {entry.data.the.length > 0 && (
+          <div style="margin:30px 0">
+            {entry.data.the.map((t: string) => (
+              <a class="the-tag" href={'/the/' + slugHoa(t)}>#{t}</a>
+            ))}
+          </div>
+        )}
+
+        <div style="margin:26px 0;padding:16px;background:var(--nen-2);border-radius:10px;font-size:15px">
+          <strong>Thấy bài này hữu ích?</strong> Chia sẻ cho đồng nghiệp:
+          <a href={'https://zalo.me/share?u=' + SITE.tenMien + '/' + entry.id} target="_blank" rel="noopener">Zalo</a> ·
+          <a href={'https://www.facebook.com/sharer/sharer.php?u=' + SITE.tenMien + '/' + entry.id} target="_blank" rel="noopener">Facebook</a>
+        </div>
+
+        {lienQuan.length > 0 && (
+          <>
+            <div class="muc-dau" style="margin-top:40px"><h2>Bài liên quan</h2></div>
+            <div class="luoi">{lienQuan.map((b) => <CardBai bai={b} />)}</div>
+          </>
+        )}
+      </article>
+
+      <aside class="muc-luc">
+        <h4>Nội dung bài</h4>
+        <ul>
+          {headings.map((h: any) => (
+            <li class={h.depth === 3 ? 'c3' : ''}><a href={'#' + h.slug}>{h.text}</a></li>
+          ))}
+        </ul>
+      </aside>
+    </div>
+  )}
+</Base>

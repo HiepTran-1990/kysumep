@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { DANH_MUC } from '../consts';
+---
+<Base tieu_de="Không tìm thấy trang" khongIndex={true}>
+  <div class="bao" style="padding:80px 0;text-align:center">
+    <div style="font-size:64px">🔧</div>
+    <h1 style="font-size:32px;margin:14px 0 8px">Không tìm thấy trang này</h1>
+    <p style="color:var(--chu-nhat);font-size:18px;max-width:520px;margin:0 auto 26px">
+      Có thể link đã cũ hoặc bài viết đã đổi địa chỉ. Thử tìm kiếm hoặc chọn một chủ đề bên dưới.
+    </p>
+    <a class="nut" href="/">← Về trang chủ</a>
+    <div class="luoi" style="margin-top:40px;text-align:left">
+      {DANH_MUC.slice(0, 6).map((d) => (
+        <a class="the-dm" href={'/' + d.slug + '/'}>
+          <div class="ico">{d.icon}</div>
+          <h3>{d.ten}</h3>
+          <p>{d.moTa}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>

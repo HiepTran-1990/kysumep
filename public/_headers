@@ -1,0 +1,5 @@
+/admin/*
+  X-Robots-Tag: noindex
+
+/files/*
+  Cache-Control: public, max-age=604800

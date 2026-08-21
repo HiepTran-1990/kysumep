@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../consts';
+---
+<Base tieu_de="Điều khoản & Bản quyền" mo_ta="Điều khoản sử dụng, giấy phép nội dung và chính sách bản quyền của website Kỹ Sư MEP.">
+  <div class="bao" style="padding:36px 0 60px;max-width:760px">
+    <h1 style="font-size:34px">Điều khoản & Bản quyền</h1>
+    <div class="bai-noi-dung">
+      <h2>1. Giấy phép nội dung</h2>
+      <p>Toàn bộ bài viết, file tính toán, LISP, tool Revit và biểu mẫu <strong>do {SITE.tacGia} biên soạn</strong> trên website này được chia sẻ theo giấy phép
+      <a href={SITE.giayPhepLink} rel="license noopener" target="_blank"><strong>{SITE.giayPhep}</strong></a>.</p>
+      <p><strong>Bạn ĐƯỢC PHÉP:</strong></p>
+      <ul>
+        <li>Tải về, sử dụng cho công việc của mình</li>
+        <li>Chỉnh sửa, phát triển thêm theo nhu cầu</li>
+        <li>Chia sẻ lại cho đồng nghiệp, đăng lại trên diễn đàn, nhóm</li>
+      </ul>
+      <p><strong>Với điều kiện:</strong></p>
+      <ul>
+        <li><strong>Ghi nguồn</strong> — nêu rõ tên tác giả và địa chỉ website {SITE.tenMien}</li>
+        <li><strong>Không dùng cho mục đích thương mại</strong> — không bán lại, không đóng gói vào khóa học thu phí, không dùng làm sản phẩm kinh doanh</li>
+      </ul>
+
+      <h2>2. Về tiêu chuẩn và quy chuẩn</h2>
+      <p>Website <strong>không đăng lại file gốc</strong> của các tiêu chuẩn TCVN, quy chuẩn QCVN, sách, giáo trình hay bất kỳ tài liệu có bản quyền nào của bên thứ ba.</p>
+      <p>Các nội dung liên quan đến tiêu chuẩn trên website là <strong>diễn giải, hướng dẫn áp dụng và ví dụ tính toán</strong> do tác giả tự biên soạn, có trích dẫn nguồn rõ ràng (số hiệu tiêu chuẩn, điều, bảng, năm ban hành) theo đúng quy định về trích dẫn hợp lý.</p>
+      <p>Để có bản gốc đầy đủ và có giá trị pháp lý, vui lòng mua từ cơ quan phát hành chính thức.</p>
+
+      <h2>3. Giới hạn trách nhiệm</h2>
+      <div class="canh-bao">
+        Các file tính toán và nội dung kỹ thuật trên website chỉ mang tính <strong>tham khảo và hỗ trợ học tập</strong>.
+        Người sử dụng có trách nhiệm kiểm tra, xác nhận lại kết quả và chịu hoàn toàn trách nhiệm khi áp dụng vào công trình thật.
+        Tác giả không chịu trách nhiệm với bất kỳ thiệt hại nào phát sinh từ việc sử dụng nội dung trên website.
+      </div>
+
+      <h2>4. Báo cáo vi phạm bản quyền</h2>
+      <p>Nếu bạn cho rằng có nội dung trên website vi phạm quyền sở hữu trí tuệ của mình, vui lòng gửi email tới
+      <a href={'mailto:' + SITE.email}>{SITE.email}</a> kèm link cụ thể và bằng chứng về quyền sở hữu.
+      Mình cam kết xem xét, phản hồi trong <strong>72 giờ</strong> và gỡ bỏ ngay nếu yêu cầu hợp lệ.</p>
+
+      <h2>5. Quyền riêng tư</h2>
+      <p>Website <strong>không thu thập thông tin cá nhân</strong>, không yêu cầu đăng ký tài khoản, không dùng cookie theo dõi hành vi.
+      Thống kê truy cập (nếu có) chỉ ở mức ẩn danh, không định danh người dùng.</p>
+
+      <p style="color:var(--chu-nhat);font-size:14.5px;margin-top:36px">Cập nhật lần cuối: 20/08/2026</p>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,122 @@
+backend:
+  name: github
+  repo: HiepTran-1990/kysumep
+  branch: main
+
+media_folder: "public/images/tai-len"
+public_folder: "/images/tai-len"
+
+locale: vi
+
+collections:
+  - name: "bai-viet"
+    label: "Bài viết"
+    label_singular: "bài viết"
+    folder: "src/content/bai-viet"
+    create: true
+    slug: "{{fields.slug}}"
+    path: "{{danh_muc}}/{{fields.slug}}"
+    extension: "md"
+    preview_path: "{{danh_muc}}/{{fields.slug}}"
+    summary: "{{tieu_de}}"
+    sortable_fields: ["ngay_dang", "tieu_de"]
+    fields:
+      - { name: "tieu_de", label: "Tiêu đề (50–60 ký tự, từ khóa đứng đầu)", widget: "string", pattern: ['^.{10,70}$', 'Tiêu đề nên từ 10 đến 70 ký tự'] }
+      - { name: "slug", label: "Địa chỉ web (không dấu, gạch ngang) — KHÔNG đổi sau khi đăng", widget: "string", pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Chỉ chữ thường, số và dấu gạch ngang'] }
+      - { name: "mo_ta", label: "Mô tả SEO (140–160 ký tự)", widget: "text", pattern: ['^.{50,200}$', 'Mô tả nên từ 50 đến 200 ký tự'] }
+      - name: "danh_muc"
+        label: "Danh mục"
+        widget: "select"
+        options:
+          - { label: "🎓 Vào nghề MEP", value: "vao-nghe" }
+          - { label: "⚡ Thiết kế — Hệ thống điện", value: "thiet-ke-mep/dien" }
+          - { label: "💧 Thiết kế — Cấp thoát nước", value: "thiet-ke-mep/cap-thoat-nuoc" }
+          - { label: "🔥 Thiết kế — Phòng cháy chữa cháy", value: "thiet-ke-mep/pccc" }
+          - { label: "❄️ Thiết kế — Điều hòa & thông gió", value: "thiet-ke-mep/dieu-hoa-thong-gio" }
+          - { label: "📊 File tính toán", value: "file-tinh-toan" }
+          - { label: "📝 Công cụ — LISP AutoCAD", value: "cong-cu/lisp-autocad" }
+          - { label: "🏢 Công cụ — Tool & Dynamo Revit", value: "cong-cu/revit" }
+          - { label: "📋 Hồ sơ & giấy tờ", value: "ho-so-giay-to" }
+          - { label: "🏗️ Thi công MEP", value: "thi-cong-mep" }
+          - { label: "📖 Tiêu chuẩn & quy chuẩn", value: "tieu-chuan" }
+      - name: "the"
+        label: "Thẻ (chọn nhiều)"
+        widget: "select"
+        multiple: true
+        required: false
+        options:
+          - "phụ tải"
+          - "chọn dây"
+          - "tủ điện"
+          - "chống sét"
+          - "cấp nước"
+          - "thoát nước"
+          - "sprinkler"
+          - "báo cháy"
+          - "tăng áp hút khói"
+          - "tải lạnh"
+          - "ống gió"
+          - "Carrier"
+          - "Excel"
+          - "LISP"
+          - "AutoCAD"
+          - "Revit"
+          - "Dynamo"
+          - "nghiệm thu"
+          - "hồ sơ hoàn công"
+          - "thẩm duyệt PCCC"
+          - "TCVN 9206"
+          - "TCVN 9207"
+          - "TCVN 5687"
+          - "TCVN 4513"
+          - "QCVN 06"
+          - "vào nghề"
+          - "hướng nghiệp"
+          - "sinh viên"
+          - "tự động hóa"
+          - "kinh nghiệm hiện trường"
+      - { name: "ngay_dang", label: "Ngày đăng", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
+      - { name: "ngay_cap_nhat", label: "Ngày cập nhật", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
+      - { name: "anh_bia", label: "Ảnh bìa", widget: "image", required: false }
+      - { name: "tac_gia", label: "Tác giả", widget: "string", default: "Trần Đại Hiệp" }
+      - { name: "noi_bat", label: "Hiện ở mục Bài nổi bật trang chủ", widget: "boolean", default: false }
+      - name: "tai_lieu"
+        label: "File tải về đi kèm (nhập đúng tên file tài liệu, không có .md)"
+        widget: "list"
+        required: false
+        field: { name: "id", label: "Mã tài liệu", widget: "string" }
+      - { name: "body", label: "Nội dung bài viết", widget: "markdown" }
+
+  - name: "tai-lieu"
+    label: "Tài liệu tải về"
+    label_singular: "tài liệu"
+    folder: "src/content/tai-lieu"
+    create: true
+    slug: "{{fields.slug}}"
+    extension: "md"
+    summary: "{{ten}}"
+    fields:
+      - { name: "ten", label: "Tên tài liệu", widget: "string" }
+      - { name: "slug", label: "Mã tài liệu (không dấu, gạch ngang)", widget: "string", pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Chỉ chữ thường, số và dấu gạch ngang'] }
+      - { name: "mo_ta", label: "Mô tả ngắn", widget: "text" }
+      - name: "danh_muc"
+        label: "Danh mục"
+        widget: "select"
+        options: ["file-tinh-toan", "cong-cu/lisp-autocad", "cong-cu/revit", "ho-so-giay-to", "thiet-ke-mep/dien", "thiet-ke-mep/cap-thoat-nuoc", "thiet-ke-mep/pccc", "thiet-ke-mep/dieu-hoa-thong-gio"]
+      - name: "dinh_dang"
+        label: "Định dạng"
+        widget: "select"
+        options: [".xlsx", ".lsp", ".zip", ".dwg", ".rvt", ".dyn", ".pdf", ".docx"]
+      - { name: "dung_luong", label: "Dung lượng (VD: 1,2 MB)", widget: "string" }
+      - { name: "phien_ban", label: "Phiên bản", widget: "string", default: "v1.0" }
+      - { name: "ngay_cap_nhat", label: "Ngày cập nhật", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
+      - { name: "phan_mem_can", label: "Phần mềm cần có", widget: "string", required: false }
+      - name: "tieu_chuan"
+        label: "Tiêu chuẩn áp dụng"
+        widget: "list"
+        required: false
+        field: { name: "ma", label: "Số hiệu (VD: TCVN 9206:2012)", widget: "string" }
+      - { name: "link_tai", label: "Đường dẫn file (VD: /files/ten-file.xlsx)", widget: "string" }
+      - { name: "giay_phep", label: "Giấy phép", widget: "string", default: "CC BY-NC 4.0" }
+      - { name: "bai_viet_lien_quan", label: "Bài viết hướng dẫn (VD: thiet-ke-mep/dien/ten-bai)", widget: "string", required: false }
+      - { name: "body", label: "Ghi chú thêm", widget: "markdown", required: false }

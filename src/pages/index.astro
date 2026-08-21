@@ -1,0 +1,100 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import CardBai from '../components/CardBai.astro';
+import { DANH_MUC, SITE, ngayVN } from '../consts';
+
+const bai = (await getCollection('bai-viet')).sort(
+  (a, b) => b.data.ngay_dang.valueOf() - a.data.ngay_dang.valueOf()
+);
+const noiBat = bai.filter((b) => b.data.noi_bat).slice(0, 3);
+const moiNhat = bai.slice(0, 6);
+const taiLieu = (await getCollection('tai-lieu')).slice(0, 6);
+
+function demBai(slug: string) {
+  return bai.filter((b) => b.data.danh_muc === slug || b.data.danh_muc.startsWith(slug + '/')).length;
+}
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.ten,
+  url: SITE.tenMien,
+  description: SITE.moTa,
+  inLanguage: 'vi-VN',
+  publisher: { '@type': 'Person', name: SITE.tacGia },
+};
+---
+<Base schema={schema}>
+  <section class="hero">
+    <div class="bao">
+      <h1>Kiến thức MEP,<br />chia sẻ miễn phí</h1>
+      <p>
+        File tính toán thiết kế, LISP AutoCAD, tool Revit, hồ sơ nghiệm thu và kinh nghiệm
+        thi công — biên soạn bởi kỹ sư đang làm nghề, dành cho người mới vào nghề.
+      </p>
+      <div class="hero-nut">
+        <a class="nut" href="/tai-lieu">📊 Xem thư viện tài liệu</a>
+        <a class="nut nut-phu" href="/vao-nghe/">🎓 Bắt đầu vào nghề MEP</a>
+      </div>
+    </div>
+  </section>
+
+  {noiBat.length > 0 && (
+    <section class="muc">
+      <div class="bao">
+        <div class="muc-dau"><h2>⭐ Bài nổi bật</h2></div>
+        <div class="luoi">{noiBat.map((b) => <CardBai bai={b} />)}</div>
+      </div>
+    </section>
+  )}
+
+  <section class="muc">
+    <div class="bao">
+      <div class="muc-dau"><h2>Chủ đề</h2></div>
+      <div class="luoi">
+        {DANH_MUC.map((d) => (
+          <a class="the-dm" href={'/' + d.slug + '/'}>
+            <div class="ico">{d.icon}</div>
+            <h3>{d.ten}</h3>
+            <p>{d.moTa}</p>
+            <span class="dem">{demBai(d.slug)} bài viết →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="muc">
+    <div class="bao">
+      <div class="muc-dau">
+        <h2>Bài mới nhất</h2>
+        <a href="/tai-lieu">Xem tài liệu →</a>
+      </div>
+      {moiNhat.length > 0
+        ? <div class="luoi">{moiNhat.map((b) => <CardBai bai={b} />)}</div>
+        : <p style="color:var(--chu-nhat)">Chưa có bài viết nào. Vào <a href="/admin/">trang quản trị</a> để đăng bài đầu tiên.</p>}
+    </div>
+  </section>
+
+  {taiLieu.length > 0 && (
+    <section class="muc">
+      <div class="bao">
+        <div class="muc-dau">
+          <h2>📊 Tài liệu tải về</h2>
+          <a href="/tai-lieu">Xem tất cả →</a>
+        </div>
+        <div class="luoi">
+          {taiLieu.map((t) => (
+            <a class="the-bai" href={t.data.bai_viet_lien_quan ? '/' + t.data.bai_viet_lien_quan : t.data.link_tai}>
+              <span class="nhan-dm">{t.data.dinh_dang} · {t.data.dung_luong}</span>
+              <h3>{t.data.ten}</h3>
+              <p>{t.data.mo_ta}</p>
+              <div class="chan"><span>{t.data.phien_ban}</span><span>{ngayVN(t.data.ngay_cap_nhat)}</span></div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

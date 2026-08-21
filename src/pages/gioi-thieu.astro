@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../consts';
+const schema = {
+  '@context': 'https://schema.org', '@type': 'Person',
+  name: SITE.tacGia, jobTitle: 'Kỹ sư MEP', url: SITE.tenMien + '/gioi-thieu',
+  knowsAbout: ['Thiết kế hệ thống điện', 'Cấp thoát nước', 'Phòng cháy chữa cháy', 'Điều hòa không khí', 'AutoCAD', 'Revit'],
+};
+---
+<Base tieu_de="Giới thiệu" mo_ta="Về Kỹ Sư MEP — website chia sẻ miễn phí kiến thức thiết kế và thi công hệ thống MEP." schema={schema}>
+  <div class="bao" style="padding:36px 0 60px;max-width:760px">
+    <h1 style="font-size:34px">Giới thiệu</h1>
+    <div class="bai-noi-dung">
+      <h2>Website này là gì</h2>
+      <p><strong>Kỹ Sư MEP</strong> là nơi mình chia sẻ miễn phí những gì mình học và làm được trong nghề thiết kế, thi công hệ thống MEP: file tính toán, công cụ tự động hóa AutoCAD và Revit, biểu mẫu hồ sơ, và kinh nghiệm hiện trường.</p>
+      <p>Toàn bộ nội dung <strong>miễn phí, không yêu cầu đăng ký, không quảng cáo</strong>.</p>
+
+      <h2>Về tôi</h2>
+      <p><em>[Anh điền phần này: tên, số năm làm nghề, chuyên về hệ thống nào, từng làm loại công trình gì, vì sao lập web này.]</em></p>
+      <p>Ví dụ: <em>"Mình là Trần Đại Hiệp, kỹ sư MEP với ... năm kinh nghiệm thiết kế hệ thống điện, cấp thoát nước, phòng cháy chữa cháy và điều hòa không khí. Hằng ngày mình làm việc với AutoCAD và Revit..."</em></p>
+
+      <h2>Vì sao mình làm website này</h2>
+      <p><em>[Anh điền: động lực thật của anh. Đây là phần người đọc và Google đều đánh giá cao — nó cho thấy đằng sau web là một người thật.]</em></p>
+
+      <h2>Cam kết về nội dung</h2>
+      <ul>
+        <li><strong>Trích dẫn chính xác.</strong> Mọi số liệu, công thức đều ghi rõ nguồn: số hiệu tiêu chuẩn, điều, bảng, năm ban hành.</li>
+        <li><strong>Không bịa.</strong> Chỗ nào chưa chắc chắn sẽ ghi rõ là chưa chắc.</li>
+        <li><strong>Tôn trọng bản quyền.</strong> Website không đăng lại file gốc của TCVN, QCVN hay tài liệu có bản quyền của bên thứ ba. Nội dung ở đây là diễn giải và hướng dẫn áp dụng bằng ngôn ngữ của mình.</li>
+        <li><strong>Có ví dụ thực tế.</strong> Mỗi bài tính toán đều có ít nhất một ví dụ tính từ đầu đến cuối.</li>
+      </ul>
+
+      <div class="canh-bao">
+        <strong>Lưu ý quan trọng:</strong> các file tính toán và nội dung kỹ thuật trên website chỉ mang tính <strong>tham khảo</strong>.
+        Người sử dụng chịu trách nhiệm kiểm tra và xác nhận lại kết quả trước khi áp dụng vào công trình thật.
+      </div>
+
+      <h2>Liên hệ</h2>
+      <p>Góp ý, báo lỗi, hoặc đề xuất chủ đề: <a href={'mailto:' + SITE.email}>{SITE.email}</a></p>
+    </div>
+  </div>
+</Base>

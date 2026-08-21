@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../consts';
+---
+<Base tieu_de="Liên hệ" mo_ta="Liên hệ với Kỹ Sư MEP — góp ý, báo lỗi nội dung, đề xuất chủ đề hoặc yêu cầu gỡ nội dung.">
+  <div class="bao" style="padding:36px 0 60px;max-width:700px">
+    <h1 style="font-size:34px">Liên hệ</h1>
+    <div class="bai-noi-dung">
+      <p>Rất mong nhận được góp ý từ anh em trong nghề.</p>
+      <h2>Email</h2>
+      <p style="font-size:20px"><a href={'mailto:' + SITE.email}>{SITE.email}</a></p>
+
+      <h2>Nên liên hệ khi nào</h2>
+      <ul>
+        <li>Phát hiện <strong>sai sót về số liệu, công thức, trích dẫn tiêu chuẩn</strong> — rất mong được báo, mình sẽ sửa và ghi nhận</li>
+        <li>File tải về bị lỗi hoặc không chạy được</li>
+        <li>Đề xuất chủ đề muốn mình viết</li>
+        <li><strong>Yêu cầu gỡ nội dung vi phạm bản quyền</strong> — xem mục dưới</li>
+      </ul>
+
+      <h2>Yêu cầu gỡ nội dung</h2>
+      <p>Nếu bạn là chủ sở hữu quyền và cho rằng có nội dung trên website vi phạm quyền của mình, vui lòng gửi email kèm:</p>
+      <ul>
+        <li>Đường dẫn (link) tới nội dung cụ thể</li>
+        <li>Bằng chứng về quyền sở hữu</li>
+        <li>Thông tin liên hệ của bạn</li>
+      </ul>
+      <p>Mình cam kết <strong>xem xét và phản hồi trong vòng 72 giờ</strong>, và sẽ gỡ ngay nếu yêu cầu hợp lệ.</p>
+    </div>
+  </div>
+</Base>

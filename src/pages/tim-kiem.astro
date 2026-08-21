@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base tieu_de="Tìm kiếm" mo_ta="Tìm bài viết, file tính toán, LISP AutoCAD và tài liệu MEP." khongIndex={true}>
+  <div class="bao" style="padding:36px 0 60px;max-width:760px">
+    <h1 style="font-size:32px;margin-bottom:20px">🔍 Tìm kiếm</h1>
+    <div id="pagefind-trang"></div>
+  </div>
+  <script is:inline>
+    window.addEventListener('load', function () {
+      if (window.PagefindUI) {
+        new window.PagefindUI({
+          element: '#pagefind-trang',
+          showSubResults: true,
+          showImages: false,
+          translations: {
+            placeholder: 'Tìm bài viết, file tính toán, LISP...',
+            clear_search: 'Xóa',
+            load_more: 'Xem thêm kết quả',
+            search_label: 'Tìm trong web',
+            zero_results: 'Không tìm thấy "[SEARCH_TERM]". Thử từ khóa ngắn hơn.',
+            many_results: 'Tìm thấy [COUNT] kết quả cho "[SEARCH_TERM]"',
+            one_result: 'Tìm thấy 1 kết quả cho "[SEARCH_TERM]"',
+            searching: 'Đang tìm "[SEARCH_TERM]"...',
+          },
+        });
+      }
+    });
+  </script>
+</Base>

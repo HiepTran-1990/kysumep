@@ -1,0 +1,31 @@
+---
+import { DANH_MUC, SITE } from '../consts';
+const { pathname } = Astro.url;
+---
+<header class="dau">
+  <div class="bao dau-trong">
+    <a href="/" class="logo">Kỹ Sư <span>MEP</span></a>
+    <nav class="menu">
+      <a class="an-dt" href="/thiet-ke-mep/">Thiết kế</a>
+      <a class="an-dt" href="/cong-cu/">Công cụ</a>
+      <a class="an-dt" href="/ho-so-giay-to/">Hồ sơ</a>
+      <a class="an-dt" href="/tai-lieu">Tài liệu</a>
+      <button class="nut-icon" id="nut-tim" aria-label="Tìm kiếm" title="Tìm kiếm (Ctrl+K)">🔍</button>
+      <button class="nut-icon" id="nut-theme" aria-label="Đổi giao diện sáng/tối">🌙</button>
+    </nav>
+  </div>
+</header>
+
+<nav class="thanh-duoi">
+  <a href="/" class={pathname === '/' ? 'dang' : ''}><span>🏠</span>Trang chủ</a>
+  <a href="/thiet-ke-mep/"><span>📐</span>Thiết kế</a>
+  <a href="/cong-cu/"><span>🔧</span>Công cụ</a>
+  <a href="/tai-lieu"><span>📊</span>Tài liệu</a>
+  <a href="/tim-kiem"><span>🔍</span>Tìm</a>
+</nav>
+
+<div id="o-tim" aria-hidden="true">
+  <div class="hop">
+    <div id="pagefind-hop"></div>
+  </div>
+</div>

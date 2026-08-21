@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { ngayVN, timDanhMuc } from '../consts';
+
+const tl = (await getCollection('tai-lieu')).sort(
+  (a, b) => b.data.ngay_cap_nhat.valueOf() - a.data.ngay_cap_nhat.valueOf()
+);
+const dinhDangs = [...new Set(tl.map((t) => t.data.dinh_dang))];
+---
+<Base tieu_de="Thư viện tài liệu" mo_ta="Kho file tính toán Excel, LISP AutoCAD, tool Revit và biểu mẫu hồ sơ MEP — tải về miễn phí.">
+  <div class="bao" style="padding:36px 0 60px">
+    <div class="duong-dan"><a href="/">Trang chủ</a> / Thư viện tài liệu</div>
+    <h1 style="font-size:34px;margin:0 0 8px">📊 Thư viện tài liệu</h1>
+    <p style="color:var(--chu-nhat);font-size:18px;max-width:660px">
+      Toàn bộ file trên trang này đều miễn phí. Mỗi file đều có bài viết hướng dẫn sử dụng đi kèm.
+    </p>
+
+    <div style="margin:24px 0">
+      <button class="the-tag loc dang" data-loc="tat-ca">Tất cả ({tl.length})</button>
+      {dinhDangs.map((d) => (
+        <button class="the-tag loc" data-loc={d}>{d} ({tl.filter((t) => t.data.dinh_dang === d).length})</button>
+      ))}
+    </div>
+
+    {tl.length > 0 ? (
+      <div class="luoi" id="ds-tl">
+        {tl.map((t) => (
+          <a class="the-bai muc-tl" data-dd={t.data.dinh_dang}
+             href={t.data.bai_viet_lien_quan ? '/' + t.data.bai_viet_lien_quan : t.data.link_tai}>
+            <span class="nhan-dm">{t.data.dinh_dang} · {t.data.dung_luong} · {t.data.phien_ban}</span>
+            <h3>{t.data.ten}</h3>
+            <p>{t.data.mo_ta}</p>
+            <div class="chan">
+              <span>{ngayVN(t.data.ngay_cap_nhat)}</span>
+              {t.data.phan_mem_can && <span>{t.data.phan_mem_can}</span>}
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p style="color:var(--chu-nhat)">Chưa có tài liệu nào.</p>
+    )}
+  </div>
+
+  <script is:inline>
+    document.querySelectorAll('.loc').forEach(function (n) {
+      n.style.cursor = 'pointer';
+      n.addEventListener('click', function () {
+        document.querySelectorAll('.loc').forEach(function (x) { x.classList.remove('dang'); });
+        n.classList.add('dang');
+        var v = n.getAttribute('data-loc');
+        document.querySelectorAll('.muc-tl').forEach(function (m) {
+          m.style.display = (v === 'tat-ca' || m.getAttribute('data-dd') === v) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</Base>
