@@ -37,7 +37,11 @@ collections:
           - { label: "📝 Công cụ — LISP AutoCAD", value: "cong-cu/lisp-autocad" }
           - { label: "🏢 Công cụ — Tool & Dynamo Revit", value: "cong-cu/revit" }
           - { label: "📋 Hồ sơ & giấy tờ", value: "ho-so-giay-to" }
-          - { label: "🏗️ Thi công MEP", value: "thi-cong-mep" }
+          - { label: "🏗️ Thi công MEP (tổng quan)", value: "thi-cong-mep" }
+          - { label: "⚡ Thi công — Điện", value: "thi-cong-mep/dien" }
+          - { label: "💧 Thi công — Cấp thoát nước", value: "thi-cong-mep/cap-thoat-nuoc" }
+          - { label: "🔥 Thi công — PCCC", value: "thi-cong-mep/pccc" }
+          - { label: "❄️ Thi công — Điều hòa & thông gió", value: "thi-cong-mep/dieu-hoa-thong-gio" }
           - { label: "📖 Tiêu chuẩn & quy chuẩn", value: "tieu-chuan" }
       - name: "the"
         label: "Thẻ (chọn nhiều)"
@@ -102,7 +106,7 @@ collections:
       - name: "danh_muc"
         label: "Danh mục"
         widget: "select"
-        options: ["file-tinh-toan", "cong-cu/lisp-autocad", "cong-cu/revit", "ho-so-giay-to", "thiet-ke-mep/dien", "thiet-ke-mep/cap-thoat-nuoc", "thiet-ke-mep/pccc", "thiet-ke-mep/dieu-hoa-thong-gio"]
+        options: ["file-tinh-toan", "cong-cu/lisp-autocad", "cong-cu/revit", "ho-so-giay-to", "thiet-ke-mep/dien", "thiet-ke-mep/cap-thoat-nuoc", "thiet-ke-mep/pccc", "thiet-ke-mep/dieu-hoa-thong-gio", "thi-cong-mep/dien", "thi-cong-mep/cap-thoat-nuoc", "thi-cong-mep/pccc", "thi-cong-mep/dieu-hoa-thong-gio"]
       - name: "dinh_dang"
         label: "Định dạng"
         widget: "select"
