@@ -10,6 +10,9 @@ import { SITE } from '../consts';
       <h2>Email</h2>
       <p style="font-size:20px"><a href={'mailto:' + SITE.email}>{SITE.email}</a></p>
 
+      <h2>Điện thoại / Zalo</h2>
+      <p style="font-size:20px"><a href={'tel:+84' + SITE.dienThoai.replace(/\s+/g, '').slice(1)}>{SITE.dienThoai}</a></p>
+
       <h2>Nên liên hệ khi nào</h2>
       <ul>
         <li>Phát hiện <strong>sai sót về số liệu, công thức, trích dẫn tiêu chuẩn</strong> — rất mong được báo, mình sẽ sửa và ghi nhận</li>
