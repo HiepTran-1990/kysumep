@@ -58,11 +58,17 @@ export const DANH_MUC: DanhMuc[] = [
     icon: '📋',
     moTa: 'Biểu mẫu, quy trình nghiệm thu, hồ sơ hoàn công, thẩm duyệt PCCC.',
   },
-  {
+   {
     slug: 'thi-cong-mep',
     ten: 'Thi công MEP',
     icon: '🏗️',
     moTa: 'Biện pháp thi công, kinh nghiệm hiện trường, xử lý sự cố.',
+    con: [
+      { slug: 'thi-cong-mep/dien', ten: 'Thi công điện', icon: '⚡', moTa: 'Biện pháp lắp đặt tủ điện, đi dây, thang máng cáp, kinh nghiệm nghiệm thu hệ điện.' },
+      { slug: 'thi-cong-mep/cap-thoat-nuoc', ten: 'Thi công cấp thoát nước', icon: '💧', moTa: 'Biện pháp thi công ống cấp thoát nước, thử áp, kinh nghiệm xử lý sự cố hiện trường.' },
+      { slug: 'thi-cong-mep/pccc', ten: 'Thi công PCCC', icon: '🔥', moTa: 'Biện pháp thi công hệ PCCC, thử nghiệm, nghiệm thu và thẩm duyệt tại hiện trường.' },
+      { slug: 'thi-cong-mep/dieu-hoa-thong-gio', ten: 'Thi công điều hòa & thông gió', icon: '❄️', moTa: 'Biện pháp lắp đặt ống gió, ống đồng, kinh nghiệm chạy thử và cân chỉnh hệ ĐHKK.' },
+    ],
   },
   {
     slug: 'tieu-chuan',
