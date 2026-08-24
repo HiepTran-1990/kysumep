@@ -4,7 +4,8 @@ export const SITE = {
   khauHieu: 'Kiến thức thiết kế & thi công MEP — chia sẻ miễn phí',
   moTa: 'Chia sẻ miễn phí kiến thức thiết kế và thi công hệ thống MEP: file tính toán, LISP AutoCAD, tool Revit, hồ sơ nghiệm thu. Dành cho kỹ sư mới vào nghề.',
   tacGia: 'Trần Đại Hiệp',
-  email: 'lienhe@kysumep.com',
+  email: 'trandaihiep1990@gmail.com',
+  dienThoai: '0938 038 491',
   giayPhep: 'CC BY-NC 4.0',
   giayPhepLink: 'https://creativecommons.org/licenses/by-nc/4.0/deed.vi',
 };
