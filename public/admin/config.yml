@@ -120,7 +120,11 @@ collections:
         widget: "list"
         required: false
         field: { name: "ma", label: "Số hiệu (VD: TCVN 9206:2012)", widget: "string" }
-      - { name: "link_tai", label: "Đường dẫn file (VD: /files/ten-file.xlsx)", widget: "string" }
+      - name: "link_tai"
+        label: "File tài liệu (bấm để tải file lên)"
+        widget: "file"
+        media_folder: "public/files"
+        public_folder: "/files"
       - { name: "giay_phep", label: "Giấy phép", widget: "string", default: "CC BY-NC 4.0" }
       - { name: "bai_viet_lien_quan", label: "Bài viết hướng dẫn (VD: thiet-ke-mep/dien/ten-bai)", widget: "string", required: false }
       - { name: "body", label: "Ghi chú thêm", widget: "markdown", required: false }
