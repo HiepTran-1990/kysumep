@@ -2,7 +2,7 @@
 tieu_de: 'Bài 1: CÁC BƯỚC TRIỂN KHAI KHI THIẾT KẾ 1 DỰ ÁN ĐIỆN'
 slug: cac-buoc-trien-khai-thiet-ke-dien
 mo_ta: Tìm hiểu các bước thiết kế hệ thống dienejdd từ thu thập yêu cầu, xác định phụ tải, lựa chọn phương án cấp điện đến tính toán, triển khai bản vẽ và kiểm tra hồ sơ.
-danh_muc: file-tinh-toan
+danh_muc: thiet-ke-mep/dien
 the:
   - phụ tải
 ngay_dang: 2026-08-24
