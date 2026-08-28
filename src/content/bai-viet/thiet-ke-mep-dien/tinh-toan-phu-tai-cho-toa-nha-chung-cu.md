@@ -1,5 +1,5 @@
 ---
-tieu_de: 'BÀI 5: TÍNH TOÁN PHỤ TẢI CHO TÒA NHÀ CHUNG CƯ'
+tieu_de: 'BÀI 4: TÍNH TOÁN PHỤ TẢI CHO TÒA NHÀ CHUNG CƯ'
 slug: tinh-toan-phu-tai-cho-toa-nha-chung-cu
 mo_ta: Tìm hiểu cách tính toán phụ tải điện tòa nhà theo tiêu chuẩn, xác định công suất tính toán, hệ số nhu cầu và lựa chọn thiết bị điện phù hợp.
 danh_muc: thiet-ke-mep/dien
