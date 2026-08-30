@@ -18,7 +18,7 @@ Công suất tính toán cho nhà ở và công trình công cộng được xá
 
 Công suất của phụ tải chiếu sáng được tính toán theo số lượng và công suất của các bộ đèn chiếu sáng trong công trình theo công thức sau:
 
-![Công suất](pasted-image-1788054804318.png)
+![Công suất](tinh-toan-cong-suat-va-phu-tai-tinh-toan/pasted-image-1788054804318.png)
 
 Trong đó:
 
@@ -28,7 +28,7 @@ P<sub>di</sub> - Công suất điện định mức của bộ đèn thứ i.
 
 Bảng 1 - hệ số yêu cầu cho phụ tải chiếu sáng, xem bảng 220.42 tiêu chuẩn NEC 2008
 
-![Bảng 1](pasted-image-1788055122897.png)
+![Bảng 1](tinh-toan-cong-suat-va-phu-tai-tinh-toan/pasted-image-1788055122897.png)
 
 Chú thích: Hệ số yêu cầu cho bảng này không áp dụng cho các phụ tải tính toán của các lộ ra hoặc phụ tải tiêu thụ ở các khu vực mà chiếu sáng toàn bộ được sử dụng trong một khoản thời gian( ví dụ như các phòng mổ, phòng khiêu vũ hoặc phòng ăn, các khu vực trong bệnh viện, nhà nghỉ, khách sạn).
 
@@ -36,9 +36,9 @@ Khi chưa có thiết kế chiếu sáng cho công trình thì phụ tải chi�
 
 Bảng 2 - Suất phụ tải biểu kiến chiếu sáng
 
-![Bảng 2](pasted-image-1788055657616.png)
+![Bảng 2](tinh-toan-cong-suat-va-phu-tai-tinh-toan/pasted-image-1788055657616.png)
 
-2. Công suất tính toán đối với các ổ cắm điện P<sub>oc</oc>
+2. Công suất tính toán đối với các ổ cắm điện P<sub>oc</sub>
 
 Ổ cắm dùng cho thiết bị điện cụ thể phải được tính toán theo công suất điện định mức của các thiết bị điện đó.
 
@@ -48,7 +48,7 @@ Khi không có số liệu cụ thể về thiết bị điện sử dụng ổ 
 
 Theo QCXDVN 01-2008 thì chỉ tiêu cấp điện ổ cắm được tính:
 
-![QCXDVN 01-2008](pasted-image-1788056238876.png)
+![QCXDVN 01-2008](tinh-toan-cong-suat-va-phu-tai-tinh-toan/pasted-image-1788056238876.png)
 
 - Đối với nhà ở và công trình công cộng khác, công suất cho mỗi ổ cắm đơn không nhỏ hơn 180A hoặc đối với mỗi đơn vị ổ cắm trên một giá kẹp. Đối với thiết bị chứa ổ cắm cấu tạo từ 4 đơn vị ổ cắm trở lên thì công suất ổ cắm được tính toán không nhỏ hơn 90 VA trên mỗi đơn vị ổ cắm, xem điều 220.14 tiêu chuẩn NEC 2008.
 
@@ -58,11 +58,11 @@ Theo QCXDVN 01-2008 thì chỉ tiêu cấp điện ổ cắm được tính:
 
 Bảng 3 - Hệ số yêu cầu đối với các thiết bị bếp
 
-![Bảng 3](pasted-image-1788058947963.png)
+![Bảng 3](tinh-toan-cong-suat-va-phu-tai-tinh-toan/pasted-image-1788058947963.png)
 
 **Công suất tính toán cho nhà ở riêng biệt, căn hộ trong nhà ở tập thể hoặc nhà chung cư được xác định theo công thức**
 
-![](20260830-100402.png)
+![](tinh-toan-cong-suat-va-phu-tai-tinh-toan/20260830-100402.png)
 
 Trong đó:
 
@@ -72,7 +72,7 @@ P<sub>yci</sub> - Công suất yêu cầu kW của thiết bị điện tử th�
 
 **Công suất tính toán cho nhà ở tập thể, nhà chung cư, nhà trọ được xác định theo công thức:**
 
-![Công suất](pasted-image-1788059809408.png)
+![Công suất](tinh-toan-cong-suat-va-phu-tai-tinh-toan/pasted-image-1788059809408.png)
 
 Trong đó:
 
@@ -82,7 +82,7 @@ P<sub>CH</sub> - Công suất tính toán kW của phụ tải khối căn hộ 
 
 Công suất tính toán của phụ tải khối căn hộ được xác định theo công thức:
 
-![Cong suat](pasted-image-1788060079887.png)
+![Cong suat](tinh-toan-cong-suat-va-phu-tai-tinh-toan/pasted-image-1788060079887.png)
 
 Trong đó:
 
@@ -94,11 +94,11 @@ K<sub>s</sub> - Hệ số đồng thời của phụ tải khối căn hộ, đ�
 
 Bảng 4 - Hệ số đồng thời trong nhà tập thể, chung cư
 
-![Bảng 4](20260830-102916.png)
+![Bảng 4](tinh-toan-cong-suat-va-phu-tai-tinh-toan/20260830-102916.png)
 
 **Công suất tính toán của phụ tải động lực trong công trình được tính như sau:**
 
-![Công suất](20260830-103026.png)
+![Công suất](tinh-toan-cong-suat-va-phu-tai-tinh-toan/20260830-103026.png)
 
 Trong đó: 
 
@@ -112,7 +112,7 @@ P<sub>ĐH</sub> - Công suất tính toán kW của phụ tải điều hòa tru
 
 **Công suất tính toán của nhóm phụ tải bơm nước, thông gió (động cơ bơm nước, quạt thông gió và các thiết bị khác) được xác định theo biểu thức sau:**
 
-![Công suất](20260830-103604.png)
+![Công suất](tinh-toan-cong-suat-va-phu-tai-tinh-toan/20260830-103604.png)
 
 Trong đó:
 
@@ -124,11 +124,11 @@ P<sub>bti</sub> Công suất điện định mức kW của động cơ bơm nư
 
 Bảng 5 - Hệ số yêu cầu K<sub>yc</sub> của nhóm phụ tải bơm nước, thông gió
 
-![](20260830-104011.png)
+![](tinh-toan-cong-suat-va-phu-tai-tinh-toan/20260830-104011.png)
 
 Công suất tính toán của nhóm phụ tải thang máy được tính theo công thức:
 
-![Công suất](20260830-104136.png)
+![Công suất](tinh-toan-cong-suat-va-phu-tai-tinh-toan/20260830-104136.png)
 
 Trong đó:
 
@@ -144,15 +144,15 @@ K<sub>yc</sub> - Hệ số yêu cầu của nhóm phụ tải thang máy, với 
 
 Bảng 6 - Hệ số yêu cầu K<sub>yc</sub> của thang máy trong các công trình nhà ở
 
-![](20260830-104939.png)
+![](tinh-toan-cong-suat-va-phu-tai-tinh-toan/20260830-104939.png)
 
-![](20260830-105001.png)
+![](tinh-toan-cong-suat-va-phu-tai-tinh-toan/20260830-105001.png)
 
 **Công suất tính toán kW của điều hòa trung tâm hoặc bán trung tâm**
 
 Công suất tính toán của phụ tải điều hòa trung tâm hoặc bán trung tâm sẽ được tính toán quy đổi từ yêu cầu công suất trao đổi nhiệt của hệ thống điều hòa trung tâm hoặc bán trung tâm và các thiết bị tiêu thụ điện khác của hệ thống.
 
-![](20260830-105350.png)
+![](tinh-toan-cong-suat-va-phu-tai-tinh-toan/20260830-105350.png)
 
 Trong đó:
 
