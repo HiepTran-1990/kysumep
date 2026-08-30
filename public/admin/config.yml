@@ -2,7 +2,7 @@ backend:
   name: github
   repo: HiepTran-1990/kysumep
   branch: main
-
+publish_mode: editorial_workflow
 media_folder: "public/images/tai-len"
 public_folder: "/images/tai-len"
 
