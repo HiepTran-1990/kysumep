@@ -89,7 +89,11 @@ collections:
         widget: "list"
         required: false
         field: { name: "id", label: "Mã tài liệu", widget: "string" }
-      - { name: "body", label: "Nội dung bài viết", widget: "markdown" }
+      - name: "body"
+        label: "Nội dung bài viết"
+        widget: "markdown"
+        media_folder: "/public/images/tai-len"
+        public_folder: "/images/tai-len"
 
   - name: "tai-lieu"
     label: "Tài liệu tải về"
